@@ -1,0 +1,100 @@
+# General config
+num_workers: 4
+id: 'exp_nusc'
+
+# Data config
+dataset: 'nuScenes'
+n_classes: 17 # 16 + 1(ignored)
+
+# Train config
+has_label: true
+val_frequency: 10
+n_epochs: 150
+warmup_epochs: 10
+batch_size: 8
+batch_size_val: 1
+lr: 0.0008 # when using DINO ViT-S/16 encoder as initialization use 0.0002.
+train_result_frequency: 100 # printing frequency of the train results
+
+
+# Model config
+vit_backbone: 'vit_small_patch16_384'
+in_channels: 5
+patch_size: [2, 8]  # patch size = patch stride if a convolutional stem (ConvStem) is used
+patch_stride: [2, 8]
+image_size: [32, 384]  # random crop at train
+window_size: [32, 384] # sliding window size
+window_stride: [32, 256] # sliding window stride
+original_image_size: [32, 2048]
+
+# Stem
+conv_stem: 'ConvStem' # 'none' or 'ConvStem'
+stem_base_channels: 32
+D_h: 256 # hidden dimension of the stem
+
+# Decoder
+decoder: 'up_conv'  # 'linear' or 'up_conv'
+skip_filters: 256 # has to be 0 (no skip) or D_h
+
+# 3D refiner
+use_kpconv: true
+
+
+# Checkpoint model
+checkpoint: null
+pretrained_model: '/path_to_pretrained_model/model.pth'
+
+# Loading pre-trained patch and positional embeddings
+reuse_pos_emb: true
+reuse_patch_emb: false # no patch embedding as a convolutional stem (ConvStem) is used
+
+
+# Data augmentation config
+augmentation:
+  # flip
+  p_flipx: 0.
+  p_flipy: 0.5
+
+  # translation
+  p_transx: 0.5
+  trans_xmin: -5
+  trans_xmax: 5
+  p_transy: 0.5
+  trans_ymin: -3
+  trans_ymax: 3
+  p_transz: 0.5
+  trans_zmin: -1
+  trans_zmax: 0.
+
+  # rotation
+  p_rot_roll: 0.5
+  rot_rollmin: -5
+  rot_rollmax: 5
+  p_rot_pitch: 0.5
+  rot_pitchmin: -5
+  rot_pitchmax: 5
+  p_rot_yaw: 0.5
+  rot_yawmin: 5
+  rot_yawmax: -5
+
+sensor:
+  name: 'HDL64'
+  type: 'spherical'
+  proj_h: 32
+  proj_w: 2048
+  fov_up: 10.
+  fov_down: -30.
+  fov_left: -180
+  fov_right: 180
+  img_mean:
+    - 12.12
+    - 10.88
+    - 0.23
+    - -1.04
+    - 0.21
+  img_stds:
+    - 12.32
+    - 11.47
+    - 6.91
+    - 0.86
+    - 0.16
