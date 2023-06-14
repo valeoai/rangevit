@@ -25,21 +25,19 @@ If you use our **RangeViT** code in your research, please consider citing:
 }
 ```
 
-## **Results**
+## **Results & Downloading pretrained RangeViT models**
 
 Results of RangeViT on the nuScenes validation set and on the SemanticKITTI test set with different weight initializations.
 
-In particular, we initialize RangeViT’s backbone with ViTs pretrained (a) on supervised ImageNet21k classification and fine-tuned on supervised image segmentation on Cityscapes with [Segmenter](https://github.com/rstrudel/segmenter) (entry Cityscapes) (b) on supervised [ImageNet21k](https://github.com/huggingface/pytorch-image-models) classification (entry IN21k), (c) with the [DINO](https://github.com/facebookresearch/dino) self-supervised approach on ImageNet1k (entry DINO), and (d) trained from scratch (entry Random).
+In particular, we initialize RangeViT’s backbone with ViTs pretrained (a) on supervised ImageNet21k classification and fine-tuned on supervised image segmentation on Cityscapes with [Segmenter](https://github.com/rstrudel/segmenter) (entry Cityscapes) (b) on supervised [ImageNet21k](https://github.com/huggingface/pytorch-image-models) classification (entry IN21k), (c) with the [DINO](https://github.com/facebookresearch/dino) self-supervised approach on ImageNet1k (entry DINO), and (d) trained from scratch (entry Random). The Cityscapes pre-trained ViT encoder weights can be downloaded from [here](https://www.rocq.inria.fr/cluster-willow/rstrudel/segmenter/checkpoints/cityscapes/seg_small_linear/).
 
-The Cityscapes pre-trained weights can be downloaded from [here](https://www.rocq.inria.fr/cluster-willow/rstrudel/segmenter/checkpoints/cityscapes/seg_small_linear/).
-
-| Dataset                 | Pre-trained weights    | mIoU (%)    |
-| ----------------------- | ---------------------- | ------------|
-| nuScenes validation set | Cityscapes             | 75.2        |
-| nuScenes validation set | IN21k                  | 74.8        |
-| nuScenes validation set | DINO                   | 73.3        |
-| nuScenes validation set | Random                 | 72.4        |
-| SemanticKITTI test set  | Cityscapes             | 64.0        |
+| Dataset                 | Pre-trained weights    | mIoU (%)    | Download  |
+| ----------------------- | ---------------------- | ------------| ----------| 
+| nuScenes validation set | Cityscapes             | 75.2        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_cs_init.pth) |
+| nuScenes validation set | IN21k                  | 74.8        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_in21k_init.pth) |
+| nuScenes validation set | DINO                   | 73.3        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_dino_init.pth) |
+| nuScenes validation set | Random                 | 72.4        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_rand_init.pth) |
+| SemanticKITTI test set  | Cityscapes             | 64.0        |           |
 
 Note that the positional embeddings are initialized with the corresponding pre-trained weights or randomly when training from scratch. The convolutional stem, the decoder and the 3D refiner layer are always randomly initialized.
 
