@@ -37,7 +37,8 @@ In particular, we initialize RangeViT’s backbone with ViTs pretrained (a) on s
 | nuScenes validation set | IN21k                  | 74.8        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_in21k_init.pth) |
 | nuScenes validation set | DINO                   | 73.3        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_dino_init.pth) |
 | nuScenes validation set | Random                 | 72.4        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_nuscenes_rand_init.pth) |
-| SemanticKITTI test set  | Cityscapes             | 64.0        |           |
+| SemanticKITTI test set  | Cityscapes             | 64.0        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_skitti_trainval_cs_init_h256.pth) |
+| SemanticKITTI val set  | Cityscapes              | 60.8        | [RangeViT model](https://github.com/valeoai/rangevit/releases/download/v1/model_skitti_train_cs_init_h128.pth) |
 
 Note that the positional embeddings are initialized with the corresponding pre-trained weights or randomly when training from scratch. The convolutional stem, the decoder and the 3D refiner layer are always randomly initialized.
 
